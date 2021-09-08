@@ -1,0 +1,29 @@
+{
+  "name": "pias_automation",
+  "version": "1.2.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "any-text": "^1.2.0",
+    "electron": "^14.0.0",
+    "puppeteer": "^10.0.0"
+  },
+  "dependencies": {
+    "docxtemplater": "^3.21.2",
+    "fs": "^0.0.1-security",
+    "mammoth": "^1.4.17",
+    "node-easy-docx": "^0.1.3",
+    "pdf-parse": "^1.1.1",
+    "pdf2json": "^0.2.5",
+    "selenium": "^2.20.0",
+    "textract": "^2.4.0",
+    "word-extractor": "^0.3.0"
+  }
+}
