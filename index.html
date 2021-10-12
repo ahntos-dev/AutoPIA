@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {background-color: #ffffff;}
+        img  {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1   {
+            color: #000000;
+            font-family: "Impact", serif;
+            font-size: 20px;
+            text-align: center;
+            border-style: groove;
+            border-color: #6e9cff;
+            border-radius: 10px;
+        }
+        h2   {
+            color: #6e9cff;
+            text-align: center;
+            font-size: large;
+        }
+        p    {
+            color: #000000;
+            font-family: "Impact", serif;
+            text-align: center;
+            vertical-align: top;
+        }
+        .logo {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .upload {
+            padding: 10px;
+            position: relative;
+        }
+        .upload-report {
+            margin-bottom: 10px;
+            float: left;
+            justify-content: start;
+        }
+        .upload-image {
+            margin-bottom: 10px;
+            float: right;
+        }
+        .submit {
+            margin-top: 180px;
+            margin-left: 20px;
+            position: relative;
+            width: 50%;
+            vertical-align: bottom;
+        }
+    </style>
+    <title>AutoPIA</title>
+    <script src="pia.js"></script>
+</head>
+<body>
+    <script src="pia.js"></script>
+    <script src="check_report.js"></script>
+    <script src="check_image.js"></script>
+    <script>
+        function approvedReport() {
+            document.getElementById("report_image").src="graphics/uploaded_report_btn.png"
+        }
+
+        function approvedImage() {
+            document.getElementById("img_image").src="graphics/uploaded_image_btn.png"
+        }
+
+        function resetReport() {
+            document.getElementById("report_image").src="graphics/upload_report_btn.png"
+        }
+
+        function resetImage() {
+            document.getElementById("img_image").src="graphics/upload_image_btn.png"
+        }
+
+        function finished() {
+            document.getElementById("submission_status").textContent = "PIA Submitted Successfully!"
+            document.getElementById("submission_status").style.color='#15b62f'
+        }
+
+        function not_finished() {
+            document.getElementById("submission_status").textContent = "PIA Submission Failed!"
+            document.getElementById("submission_status").style.color='#ff0000'
+        }
+
+        async function run() {
+            //alert("Report Length: " + document.getElementById("upload_report").value.length)
+            //alert("Image Length: " + document.getElementById("upload_image").value.length)
+
+            if (document.getElementById("upload_report").value.length > 5
+                && document.getElementById("upload_image").value.length > 4)
+            {
+                const result = await runPIA();
+
+                if (result === 0) {
+                    finished()
+                } else {
+                    not_finished()
+                }
+            } else {
+                alert("Please upload the necessary files to run the program.")
+            }
+        }
+    </script>
+
+    <p id="loginInfo">. . .</p>
+    <div class="buttons">
+        <div class="logo">
+            <img src="graphics/AutoPIA-logo.png">
+        </div>
+
+        <h1 id="submission_status"></h1>
+
+        <div class="upload">
+            <div class="upload-report">
+                <input type="file" id="upload_report" accept=".docx"
+                       onchange="approvedReport()" hidden/>
+                <label for="upload_report">
+                    <img src="graphics/upload_report_btn.png" id="report_image"/>
+                </label>
+            </div>
+
+            <div class="upload-image">
+                <input type="file" id="upload_image" accept="image/jpeg, image/png"
+                       onchange="approvedImage()" hidden/>
+                <label for="upload_image">
+                    <img src="graphics/upload_image_btn.png" id="img_image"/>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="submit">
+        <input type="image" id="submit_btn" src="graphics/run_button copy.png" onclick="run()">
+    </div>
+</body>
+</html>
