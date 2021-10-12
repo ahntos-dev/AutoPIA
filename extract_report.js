@@ -16,22 +16,10 @@ module.exports = {
                     .value // The raw text
                     .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, ""); // Remove white space
 
-                fs.writeFile("uncg-report.txt", text, function (err) {
+                fs.writeFile('blank_report.txt', text, function (err) {
                     if (err) console.log('error', err);
                 });
             })
             .done();
     }
 }
-/*
-mammoth.convertToHtml({path: filePath})
-    .then(function(result){
-        var html = result.value; // The generated HTML
-        var messages = result.messages; // Any messages, such as warnings during conversion
-
-        fs.writeFile("report.html", html, function(err) {
-            if(err) console.log('error', err);
-        });
-    })
-    .done();
- */
